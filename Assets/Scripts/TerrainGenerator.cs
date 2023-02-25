@@ -1,25 +1,32 @@
+using System;
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
+using Random = UnityEngine.Random;
 
-public class Terrain : MonoBehaviour
+public class TerrainGenerator : MonoBehaviour
 {
+    public GameWorldManager GameWorldManager;
+    
     [SerializeField]
     private GameObject grassTerrainPrefab;
     [SerializeField]
     private GameObject sandTerrainPrefab;
     [SerializeField]
-    private float waterLevel = .4f;
+    private float waterLevel = .25f;
     [SerializeField]
-    private float sandLevel = .6f;
+    private float sandLevel = .35f;
     [SerializeField]
-    private float scale = .1f;
-    [SerializeField]
-    private int size = 500;
+    private float scale = .05f;
+    
+    private int size;
 
-    Cell[,] grid;
+    private void Awake()
+    {
+        size = GameWorldManager.WorldSize;
+    }
 
-    void Start()
+    public void GenerateTerrain(out Cell[,] grid)
     {
         float[,] noiseMap = new float[size, size];
         (float xOffset, float yOffset) = (Random.Range(-10000f, 10000f), Random.Range(-10000f, 10000f));
@@ -29,7 +36,6 @@ public class Terrain : MonoBehaviour
             {
                 float noiseValue = Mathf.PerlinNoise(x * scale + xOffset, y * scale + yOffset);
                 noiseMap[x, y] = noiseValue;
-                print(noiseValue);
             }
         }
 
@@ -52,8 +58,6 @@ public class Terrain : MonoBehaviour
             {
                 float noiseValue = noiseMap[x, y];
                 noiseValue -= falloffMap[x, y];
-                // bool isWater = noiseValue < waterLevel;
-                // Cell cell = new Cell(isWater);
 
                 CellType cellType;
                 if (noiseValue < waterLevel)
@@ -79,12 +83,12 @@ public class Terrain : MonoBehaviour
     void InstantiateTerrain(Cell[,] grid)
     {
 
-        for (int x = 0; x < size; x++)
+        for (int y = 0; y < size; y++)
         {
-            for (int y = 0; y < size; y++)
+            for (int x = 0; x < size; x++)
             {
                 Cell cell = grid[x, y];
-                print(cell.CellType);
+                
                 if (cell.CellType.Equals(CellType.GRASS))
                 {
                     Instantiate(grassTerrainPrefab, new Vector3(x, 0, y), Quaternion.identity);
