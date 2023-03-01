@@ -129,6 +129,8 @@ namespace StarterAssets
             if (_mainCamera == null)
             {
                 _mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
             }
         }
 

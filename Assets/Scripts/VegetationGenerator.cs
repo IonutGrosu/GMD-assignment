@@ -47,6 +47,7 @@ public class VegetationGenerator : MonoBehaviour
                         //tree here
                         GameObject treePrefab = treePrefabs[Random.Range(0, treePrefabs.Length)];
                         GameObject tree = Instantiate(treePrefab, transform);
+                        treePrefab.tag = "Selectable";
                         tree.transform.position = new Vector3(x, 0, y);
                         tree.transform.rotation = Quaternion.Euler(0, Random.Range(0f, 360f), 0);
                         tree.transform.localScale = Vector3.one*Random.Range(.8f, 1.2f);

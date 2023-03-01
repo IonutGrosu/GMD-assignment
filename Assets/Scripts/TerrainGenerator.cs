@@ -92,10 +92,12 @@ public class TerrainGenerator : MonoBehaviour
                 if (cell.CellType.Equals(CellType.GRASS))
                 {
                     Instantiate(grassTerrainPrefab, new Vector3(x, 0, y), Quaternion.identity);
+                    grassTerrainPrefab.tag = "Selectable";
                 }
                 else if (cell.CellType.Equals(CellType.SAND))
                 {
                     Instantiate(sandTerrainPrefab, new Vector3(x, 0, y), Quaternion.identity);
+                    sandTerrainPrefab.tag = "Selectable";
                 }
             }
         }
