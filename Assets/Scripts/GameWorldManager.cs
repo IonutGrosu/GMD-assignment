@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class GameWorldManager : MonoBehaviour
@@ -8,6 +9,12 @@ public class GameWorldManager : MonoBehaviour
 
     public TerrainGenerator TerrainGenerator;
     public VegetationGenerator VegetationGenerator;
+
+    private void Awake()
+    {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.Confined;
+    }
 
     private void Start()
     {

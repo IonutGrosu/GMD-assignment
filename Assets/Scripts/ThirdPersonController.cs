@@ -130,7 +130,7 @@ namespace StarterAssets
             {
                 _mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
                 Cursor.visible = true;
-                Cursor.lockState = CursorLockMode.None;
+                // Cursor.lockState = CursorLockMode.Confined;
             }
         }
 

@@ -1,51 +1,87 @@
 ﻿using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Selectable : MonoBehaviour
 {
-    [SerializeField] private new string tag = "Selectable";
+    public static Selectable instance;
     
-    private Transform _selection;
-    private void Update()
+    [SerializeField] private new string tag = "Selectable";
+    private Camera camera;
+    private Transform selection;
+    private Transform highlight;
+    private RaycastHit raycastHit;
+
+    private void Awake()
     {
-        if (_selection != null)
+        instance = this;
+        camera = Camera.main;
+    }
+
+    public GameObject GetSelection()
+    {
+        var ray = camera.ScreenPointToRay(Input.mousePosition);
+
+        Physics.Raycast(ray, out var hit);
+        if (hit.transform.CompareTag(tag))
         {
-            _selection.gameObject.GetComponent<Outline>().enabled = false;
-            _selection = null;
+            print(hit.transform.name);
         }
-        
-        var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-     
-        if (Physics.Raycast(ray, out var hit))
+        return hit.transform.gameObject;
+    }
+
+    void Update()
+    {
+        // Highlight
+        if (highlight != null)
         {
-            var selection = hit.transform;
-            if (selection.CompareTag(tag))
+            highlight.gameObject.GetComponent<Outline>().enabled = false;
+            highlight = null;
+        }
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (!EventSystem.current.IsPointerOverGameObject() && Physics.Raycast(ray, out raycastHit)) //Make sure you have EventSystem in the hierarchy before using EventSystem
+        {
+            highlight = raycastHit.transform;
+            if (highlight.CompareTag("Selectable") && highlight != selection)
             {
-                var selectionOutline = selection.gameObject.GetComponent<Outline>();
-
-                if (selectionOutline != null)
+                if (highlight.gameObject.GetComponent<Outline>() != null)
                 {
-                    selectionOutline.gameObject.GetComponent<Outline>().enabled = true;
-
-                    if (Input.GetMouseButtonDown(0))
-                    {
-                        Destroy(selection.gameObject);
-                        _selection = null;
-                    }
+                    highlight.gameObject.GetComponent<Outline>().enabled = true;
                 }
                 else
                 {
-                    var outline = selection.gameObject.AddComponent<Outline>();
+                    Outline outline = highlight.gameObject.AddComponent<Outline>();
                     outline.enabled = true;
-                    selection.gameObject.GetComponent<Outline>().OutlineColor = Color.white;
-                    selection.gameObject.GetComponent<Outline>().OutlineWidth = 25.0f;
+                    highlight.gameObject.GetComponent<Outline>().OutlineColor = Color.magenta;
+                    highlight.gameObject.GetComponent<Outline>().OutlineWidth = 7.0f;
                 }
-
-                _selection = selection;
             }
             else
             {
-                _selection = null;
+                highlight = null;
+            }
+        }
+
+        // Selection
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (highlight)
+            {
+                if (selection != null)
+                {
+                    selection.gameObject.GetComponent<Outline>().enabled = false;
+                }
+                selection = raycastHit.transform;
+                selection.gameObject.GetComponent<Outline>().enabled = true;
+                highlight = null;
+            }
+            else
+            {
+                if (selection)
+                {
+                    selection.gameObject.GetComponent<Outline>().enabled = false;
+                    selection = null;
+                }
             }
         }
     }
