@@ -13,11 +13,14 @@ namespace StarterAssets
 
     public enum ItemType
     {
-        Tool
+        Tool,
+        Seed
     }
 
     public enum ActionType
     {
-        Dig
+        Dig,
+        Plant,
+        CutTree
     }
 }
