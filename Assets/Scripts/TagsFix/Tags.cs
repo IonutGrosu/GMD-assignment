@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,5 +15,10 @@ public class Tags : MonoBehaviour
     public bool HasTag(string tagName)
     {
         return _tags.Exists(t => t.Name.Equals(tagName, StringComparison.InvariantCultureIgnoreCase));
+    }
+
+    public void AddTag(Tag t)
+    {
+        _tags.Add(t);
     }
 }
