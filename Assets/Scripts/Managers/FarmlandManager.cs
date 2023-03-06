@@ -1,13 +1,13 @@
 using StarterAssets;
+using StarterAssets.Plants;
 using UnityEngine;
 
 public class FarmlandManager : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject dirtCubePrefab;
+    [SerializeField] private GameObject dirtCubePrefab;
 
-    [SerializeField]
-    private GameObject tomatoPlantPrefab;
+    [SerializeField] private GameObject tomatoPlantPrefab;
+    [SerializeField] private GameObject eggplantPrefab;
 
     void Update()
     {
@@ -39,6 +39,24 @@ public class FarmlandManager : MonoBehaviour
                             InventoryManager.instance.GetSelectedItem(true);
                         }
                     }
+                } else if (selectedItem.name.Equals("EggplantSeed"))
+                {
+                    GameObject go = Selectable.instance.GetSelection();
+                    Vector3 position = go.transform.position;
+                    if (go.TryGetComponent<Tags>(out var tags) && tags.HasTag("PlantableDirt"))
+                    {
+                        if (go.transform.childCount <= 1)  // test if not already a planted plant :) 
+                        {
+                            GameObject eggplant = Instantiate(eggplantPrefab, position, Quaternion.identity);
+                            eggplant.transform.parent = go.transform;
+                            InventoryManager.instance.GetSelectedItem(true);
+                        }
+                    }
+                    // 0 0.5 -0.02
+                    // 0 0.5 -0.1
+                    // 0 0.5 -0.15
+                    // 0 0 -0.25
+                    
                 } else if(selectedItem.name.Equals("Pickaxe"))
                 {
                     GameObject go = Selectable.instance.GetSelection();
@@ -47,11 +65,11 @@ public class FarmlandManager : MonoBehaviour
                     {
                         if (selectedGameObjectTags.HasTag("Harvestable"))
                         {
-                            TomatoPlant tomatoPlant = go.GetComponentInParent<TomatoPlant>();
-                            if (tomatoPlant != null)
+                            PlantLogic plantLogic = go.GetComponentInParent<PlantLogic>();
+                            if (plantLogic != null)
                             {
-                                int seedsHarvested = tomatoPlant.Harvest();
-                                print($"Harvested {seedsHarvested} seeds from the tomato plant");
+                                Harvest harvest = plantLogic.Harvest();
+                                print($"Harvested {harvest.HarvestedSeeds} seeds and {harvest.HarvestedFruits} fruits from the {harvest.PlantType} plant");
                             }
                         }
                     }

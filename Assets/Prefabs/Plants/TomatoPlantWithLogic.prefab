@@ -54,9 +54,9 @@ MonoBehaviour:
   - {fileID: 4493989061479077528}
   - {fileID: 6513935176217337557}
   - {fileID: 780275431191477795}
-  inventoryManager: {fileID: 0}
   timeToGrow: 3
   harvestableTag: {fileID: 11400000, guid: 687be34bbae94a84ba39e26ecbe94275, type: 2}
+  plant: {fileID: 11400000, guid: 96505ff276bb9c044884e92b0f13106a, type: 2}
 --- !u!114 &7145200340480089602
 MonoBehaviour:
   m_ObjectHideFlags: 0

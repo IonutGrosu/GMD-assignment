@@ -7101,6 +7101,8 @@ MonoBehaviour:
     type: 3}
   tomatoPlantPrefab: {fileID: 3684042638149544018, guid: cbf469c2c0290184ab0f6690bdd6d1d3,
     type: 3}
+  eggplantPrefab: {fileID: 2017709313266180048, guid: 1c425d20790048b4e8c69fd267acf3b6,
+    type: 3}
 --- !u!114 &1180950011 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2309907853230490849, guid: 482aaba8984318748a30176ab949d144,
@@ -9795,9 +9797,9 @@ MonoBehaviour:
   startItems:
   - {fileID: 11400000, guid: 94046649025d1f94091b02a8a6dbc833, type: 2}
   - {fileID: 11400000, guid: 9943458a3bcba6e479895151039d175b, type: 2}
-  - {fileID: 11400000, guid: b8d0c41996a1372478e05fc7a9fae23a, type: 2}
-  - {fileID: 11400000, guid: b8d0c41996a1372478e05fc7a9fae23a, type: 2}
-  - {fileID: 11400000, guid: b8d0c41996a1372478e05fc7a9fae23a, type: 2}
+  - {fileID: 11400000, guid: 3c298155a2222ee47bbed73334424a48, type: 2}
+  - {fileID: 11400000, guid: 3c298155a2222ee47bbed73334424a48, type: 2}
+  - {fileID: 11400000, guid: 3c298155a2222ee47bbed73334424a48, type: 2}
 --- !u!4 &1756515262
 Transform:
   m_ObjectHideFlags: 0
