@@ -12,6 +12,8 @@ public class VegetationGenerator : MonoBehaviour
     [SerializeField]
     private GameObject[] treePrefabs;
     
+    public PlayerSpawnHelper PlayerSpawnHelper;
+    
     private int size;
 
     private void Awake()
@@ -54,6 +56,8 @@ public class VegetationGenerator : MonoBehaviour
                 }
             }
         }
+        
+        PlayerSpawnHelper.SpawnPlayer();
     }
     
 }

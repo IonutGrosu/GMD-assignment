@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 553606935477130574}
   - component: {fileID: 553606935477130561}
   - component: {fileID: 553606935477130560}
+  - component: {fileID: -370746545938086171}
   m_Layer: 9
   m_Name: GrassTerrainCube
   m_TagString: Selectable
@@ -97,3 +98,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-370746545938086171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 553606935477130563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7488696b692f6443808128603a27ba2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _tags:
+  - {fileID: 11400000, guid: 3f97fea5026d5f0448431416323b18cd, type: 2}
+  - {fileID: 11400000, guid: 81c2eaaa045b98e498b5d923420c6fc4, type: 2}

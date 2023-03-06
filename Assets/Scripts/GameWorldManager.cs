@@ -9,6 +9,7 @@ public class GameWorldManager : MonoBehaviour
 
     public TerrainGenerator TerrainGenerator;
     public VegetationGenerator VegetationGenerator;
+    public PlayerSpawnHelper PlayerSpawnHelper;
 
     private void Awake()
     {
@@ -20,5 +21,7 @@ public class GameWorldManager : MonoBehaviour
     {
         TerrainGenerator.GenerateTerrain(out WorldGrid);
         VegetationGenerator.GenerateTrees(WorldGrid);
+        // PlayerSpawnHelper.SpawnPlayer();
+        
     }
 }

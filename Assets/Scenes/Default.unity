@@ -1138,6 +1138,7 @@ GameObject:
   - component: {fileID: 334540879}
   - component: {fileID: 334540878}
   - component: {fileID: 334540877}
+  - component: {fileID: 334540882}
   m_Layer: 9
   m_Name: WaterPlane
   m_TagString: Untagged
@@ -1239,6 +1240,19 @@ Transform:
   m_Father: {fileID: 740678497}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &334540882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 334540876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7488696b692f6443808128603a27ba2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _tags: []
 --- !u!1001 &366502846
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7143,6 +7157,7 @@ MonoBehaviour:
   WorldSize: 100
   TerrainGenerator: {fileID: 1625777280}
   VegetationGenerator: {fileID: 1306766173}
+  PlayerSpawnHelper: {fileID: 2044213834}
 --- !u!4 &1200050600
 Transform:
   m_ObjectHideFlags: 0
@@ -7159,6 +7174,7 @@ Transform:
   - {fileID: 1306766172}
   - {fileID: 1913579733}
   - {fileID: 1172872763}
+  - {fileID: 2044213833}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7521,6 +7537,7 @@ MonoBehaviour:
   treeDensity: 0.35
   treePrefabs:
   - {fileID: 164484, guid: d59133509f424e849b6d63b76ed0cad2, type: 3}
+  PlayerSpawnHelper: {fileID: 2044213834}
 --- !u!1001 &1371729789
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12062,6 +12079,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b994f6281ac117a40858422d15f962e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &2044213832
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2044213833}
+  - component: {fileID: 2044213834}
+  m_Layer: 0
+  m_Name: PlayerSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2044213833
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2044213832}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1200050600}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2044213834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2044213832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fdf9f51576d18144924ce4f852a09cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 4416926083347132227}
 --- !u!1001 &2066670824
 PrefabInstance:
   m_ObjectHideFlags: 0
