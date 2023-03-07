@@ -4,11 +4,13 @@ using Random = UnityEngine.Random;
 public class PlayerSpawnHelper : MonoBehaviour
 {
     [SerializeField] private GameObject player;
+    [SerializeField] private GameObject shop;
 
     public void SpawnPlayer()
     {
         Vector3 spawnLocation = FindSpawnLocation();
         player.transform.position = spawnLocation;
+        shop.transform.position = spawnLocation + new Vector3(2, 0, 0);
     }
 
     private Vector3 FindSpawnLocation()

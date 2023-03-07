@@ -16,3 +16,5 @@ MonoBehaviour:
   type: 1
   actionType: 1
   stackable: 1
+  sellPrice: 5
+  sellable: 1

@@ -7,7 +7,6 @@ public class PlantLogic : MonoBehaviour
 {
     [SerializeField] private GameObject[] growthStagePrefabs;
     [SerializeField] private int timeToGrow;
-    [SerializeField] private Tag harvestableTag;
     [SerializeField] private Plant plant;
     
     void Start()

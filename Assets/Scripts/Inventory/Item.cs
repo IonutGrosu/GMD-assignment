@@ -9,6 +9,8 @@ namespace StarterAssets
         public ItemType type;
         public ActionType actionType;
         public bool stackable;
+        public int sellPrice;
+        public bool sellable;
     }
 
     public enum ItemType

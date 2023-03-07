@@ -52,11 +52,7 @@ public class FarmlandManager : MonoBehaviour
                             InventoryManager.instance.GetSelectedItem(true);
                         }
                     }
-                    // 0 0.5 -0.02
-                    // 0 0.5 -0.1
-                    // 0 0.5 -0.15
-                    // 0 0 -0.25
-                    
+
                 } else if(selectedItem.name.Equals("Pickaxe"))
                 {
                     GameObject go = Selectable.instance.GetSelection();
