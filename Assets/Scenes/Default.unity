@@ -7753,6 +7753,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1172872763}
   - component: {fileID: 1172872764}
+  - component: {fileID: 1172872765}
   m_Layer: 0
   m_Name: FarmlandManager
   m_TagString: Untagged
@@ -7793,6 +7794,22 @@ MonoBehaviour:
     type: 3}
   eggplantPrefab: {fileID: 2017709313266180048, guid: 1c425d20790048b4e8c69fd267acf3b6,
     type: 3}
+--- !u!114 &1172872765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1172872762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 337e45ea022340669cbc4021854fd812, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tomatoSeed: {fileID: 11400000, guid: b8d0c41996a1372478e05fc7a9fae23a, type: 2}
+  tomatoFruit: {fileID: 11400000, guid: c06a715b08cffec4f9db69b7ea845b81, type: 2}
+  eggplantSeed: {fileID: 11400000, guid: 3c298155a2222ee47bbed73334424a48, type: 2}
+  eggplantFruit: {fileID: 11400000, guid: d8c084224f2a0b04894b2651f0b52fdf, type: 2}
 --- !u!1 &1200050598
 GameObject:
   m_ObjectHideFlags: 0

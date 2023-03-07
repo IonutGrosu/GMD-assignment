@@ -7,7 +7,7 @@ namespace StarterAssets
     {
         public Sprite image;
         public ItemType type;
-        public ActionType actionType;
+        // public ActionType actionType;
         public bool stackable;
         public int sellPrice;
         public bool sellable;
@@ -16,7 +16,8 @@ namespace StarterAssets
     public enum ItemType
     {
         Tool,
-        Seed
+        Seed,
+        Fruit
     }
 
     public enum ActionType

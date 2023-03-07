@@ -1,5 +1,6 @@
 using StarterAssets;
 using StarterAssets.Plants;
+using StarterAssets.Utils;
 using UnityEngine;
 
 public class FarmlandManager : MonoBehaviour
@@ -65,6 +66,7 @@ public class FarmlandManager : MonoBehaviour
                             if (plantLogic != null)
                             {
                                 Harvest harvest = plantLogic.Harvest();
+                                HarvestUtil.instance.AddHarvestToInventory(harvest);
                                 print($"Harvested {harvest.HarvestedSeeds} seeds and {harvest.HarvestedFruits} fruits from the {harvest.PlantType} plant");
                             }
                         }
