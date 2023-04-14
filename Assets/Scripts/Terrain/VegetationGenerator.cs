@@ -13,6 +13,8 @@ public class VegetationGenerator : MonoBehaviour
     private GameObject[] treePrefabs;
     
     public PlayerSpawnHelper PlayerSpawnHelper;
+
+    public WildlifeSpawner WildlifeSpawner;
     
     private int size;
 
@@ -58,6 +60,7 @@ public class VegetationGenerator : MonoBehaviour
         }
         
         PlayerSpawnHelper.SpawnPlayer();
+        WildlifeSpawner.SpawnChickens();
     }
     
 }
