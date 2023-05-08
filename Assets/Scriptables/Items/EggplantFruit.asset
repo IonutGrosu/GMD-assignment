@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68f00bf66d2542e095abaaa6fd589c63, type: 3}
   m_Name: EggplantFruit
   m_EditorClassIdentifier: 
-  image: {fileID: 21300000, guid: 5c5a9bdbc642346b4bdd735e00877cf3, type: 3}
+  image: {fileID: 21300000, guid: c8972b83c66364da6a4e6ef8b7dd3802, type: 3}
   type: 2
   stackable: 1
   sellPrice: 15

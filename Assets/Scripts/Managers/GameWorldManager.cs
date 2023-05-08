@@ -22,6 +22,5 @@ public class GameWorldManager : MonoBehaviour
         TerrainGenerator.GenerateTerrain(out WorldGrid);
         VegetationGenerator.GenerateTrees(WorldGrid);
         // PlayerSpawnHelper.SpawnPlayer();
-        
     }
 }

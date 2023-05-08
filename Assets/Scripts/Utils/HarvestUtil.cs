@@ -25,12 +25,12 @@ namespace StarterAssets.Utils
                 {
                     for (int i = 0; i < harvest.HarvestedSeeds; i++)
                     {
-                        InventoryManager.instance.AddItem(tomatoSeed);
+                        InventoryManager.Instance.AddItem(tomatoSeed);
                     }
 
                     for (int i = 0; i < harvest.HarvestedFruits; i++)
                     {
-                        InventoryManager.instance.AddItem(tomatoFruit);
+                        InventoryManager.Instance.AddItem(tomatoFruit);
                     }
                     break;
                 }
@@ -38,12 +38,12 @@ namespace StarterAssets.Utils
                 {
                     for (int i = 0; i < harvest.HarvestedSeeds; i++)
                     {
-                        InventoryManager.instance.AddItem(eggplantSeed);
+                        InventoryManager.Instance.AddItem(eggplantSeed);
                     }
 
                     for (int i = 0; i < harvest.HarvestedFruits; i++)
                     {
-                        InventoryManager.instance.AddItem(eggplantFruit);
+                        InventoryManager.Instance.AddItem(eggplantFruit);
                     }
                     break;
                 }

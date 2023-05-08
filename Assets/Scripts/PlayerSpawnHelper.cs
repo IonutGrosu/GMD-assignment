@@ -10,7 +10,7 @@ public class PlayerSpawnHelper : MonoBehaviour
     {
         Vector3 spawnLocation = FindSpawnLocation();
         player.transform.position = spawnLocation;
-        shop.transform.position = spawnLocation + new Vector3(2, 0, 0);
+        shop.transform.position = spawnLocation + new Vector3(2, -1f, 0);
     }
 
     private Vector3 FindSpawnLocation()
@@ -38,7 +38,6 @@ public class PlayerSpawnHelper : MonoBehaviour
                         Collider[] hitColliders = Physics.OverlapSphere(hit.point, 25f);
                         foreach (var hitCollider in hitColliders)
                         {
-                            print(hitCollider.gameObject.name); // This print does not return any FirTree objects to the console
                             Tags colliderTags = hitCollider.gameObject.GetComponent<Tags>();
                             if (colliderTags != null)
                             {

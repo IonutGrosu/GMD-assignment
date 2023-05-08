@@ -43,7 +43,7 @@ public class WildlifeSpawner : MonoBehaviour
                         Collider[] hitColliders = Physics.OverlapSphere(hit.point, 25f);
                         foreach (var hitCollider in hitColliders)
                         {
-                            print(hitCollider.gameObject.name); // This print does not return any FirTree objects to the console
+                            // print(hitCollider.gameObject.name); // This print does not return any FirTree objects to the console
                             Tags colliderTags = hitCollider.gameObject.GetComponent<Tags>();
                             if (colliderTags != null)
                             {

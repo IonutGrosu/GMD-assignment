@@ -14,7 +14,7 @@ public class FarmlandManager : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Item selectedItem = InventoryManager.instance.GetSelectedItem(false);
+            Item selectedItem = InventoryManager.Instance.GetSelectedItem(false);
             if (selectedItem != null)
             {
                 if (selectedItem.name.Equals("Shovel")) // also test if selected gameobject is grass
@@ -37,7 +37,7 @@ public class FarmlandManager : MonoBehaviour
                         {
                             GameObject tomatoPlant = Instantiate(tomatoPlantPrefab, position, Quaternion.identity);
                             tomatoPlant.transform.parent = go.transform;
-                            InventoryManager.instance.GetSelectedItem(true);
+                            InventoryManager.Instance.GetSelectedItem(true);
                         }
                     }
                 } else if (selectedItem.name.Equals("EggplantSeed"))
@@ -50,7 +50,7 @@ public class FarmlandManager : MonoBehaviour
                         {
                             GameObject eggplant = Instantiate(eggplantPrefab, position, Quaternion.identity);
                             eggplant.transform.parent = go.transform;
-                            InventoryManager.instance.GetSelectedItem(true);
+                            InventoryManager.Instance.GetSelectedItem(true);
                         }
                     }
 

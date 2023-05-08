@@ -69,7 +69,7 @@ public class ShopWindow : MonoBehaviour
 
                 for (int i = 0; i < itemInSlot.count; i++)
                 {
-                    InventoryManager.instance.AddItem(selectedItem);
+                    InventoryManager.Instance.AddItem(selectedItem);
                     Destroy(itemInSlot.gameObject);
                 }
             }

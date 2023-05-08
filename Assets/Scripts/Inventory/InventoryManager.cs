@@ -1,32 +1,34 @@
-using System;
+using System.Collections.Generic;
+using System.Linq;
 using StarterAssets;
+using StarterAssets.Managers;
 using UnityEngine;
 
-public class InventoryManager : MonoBehaviour
+public class InventoryManager : MonoBehaviour, ISaveManager
 {
-    public static InventoryManager instance;
+    public static InventoryManager Instance;
     
-    public InventorySlot[] InventorySlots;
+    public InventorySlot[] inventorySlots;
     public GameObject inventoryItemPrefab;
 
     public Item[] startItems;
 
-    public const int MAXSTACKSIZE = 64;
+    public const int MaxStackSize = 64;
 
-    private int selectedSlot = -1;
+    private int _selectedSlot = -1;
 
     private void Awake()
     {
-        instance = this;
+        Instance = this;
     }
 
     private void Start()
     {
-        ChageSelectedSlot(0);
-        foreach (Item item in startItems)
-        {
-            AddItem(item);
-        }
+            ChangeSelectedSlot(0);
+            foreach (var item in startItems)
+            {
+                AddItem(item);
+            }
     }
 
     private void Update()
@@ -36,29 +38,29 @@ public class InventoryManager : MonoBehaviour
             bool isnumber = int.TryParse(Input.inputString, out int number);
             if (isnumber && number > 0 && number < 8)
             {
-                ChageSelectedSlot(number-1);
+                ChangeSelectedSlot(number-1);
             }
         }
     }
 
-    void ChageSelectedSlot(int newValue)
+    private void ChangeSelectedSlot(int newValue)
     {
-        if (selectedSlot >= 0)
+        if (_selectedSlot >= 0)
         {
-            InventorySlots[selectedSlot].Deselect();
+            inventorySlots[_selectedSlot].Deselect();
         }
-        InventorySlots[newValue].Select();
-        selectedSlot = newValue;
+        inventorySlots[newValue].Select();
+        _selectedSlot = newValue;
     }
 
     public bool AddItem(Item item)
     {
         // check for a slot with count < max stack size
-        for (int i = 0; i < InventorySlots.Length; i++)
+        for (int i = 0; i < inventorySlots.Length; i++)
         {
-            InventorySlot slot = InventorySlots[i];
+            InventorySlot slot = inventorySlots[i];
             InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
-            if (itemInSlot != null && itemInSlot.item == item && itemInSlot.count < MAXSTACKSIZE && item.stackable )
+            if (itemInSlot != null && itemInSlot.item == item && itemInSlot.count < MaxStackSize && item.stackable )
             {
                 itemInSlot.count++;
                 itemInSlot.refreshCount();
@@ -67,9 +69,9 @@ public class InventoryManager : MonoBehaviour
         }
         
         // check for an empty slot
-        for (int i = 0; i < InventorySlots.Length; i++)
+        for (int i = 0; i < inventorySlots.Length; i++)
         {
-            InventorySlot slot = InventorySlots[i];
+            InventorySlot slot = inventorySlots[i];
             InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
             if (itemInSlot == null) 
             {
@@ -90,7 +92,7 @@ public class InventoryManager : MonoBehaviour
 
     public Item GetSelectedItem(bool useItem)
     {
-        InventorySlot slot = InventorySlots[selectedSlot];
+        InventorySlot slot = inventorySlots[_selectedSlot];
         InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
         if (itemInSlot != null)
         {
@@ -111,5 +113,34 @@ public class InventoryManager : MonoBehaviour
         }
 
         return null;
+    }
+
+    public void LoadData(SaveItems data)
+    {
+        if (data == null) return;
+        for(var i =0; i< data.Items.Length; i++)
+        {
+            for (var j = 0; j < data.Counts[i]; j++)
+            {
+                AddItem(data.Items[i]);
+            }
+        }
+    }
+
+    public void SaveData(SaveItems data)
+    {
+        var items = new List<Item>();
+        var counts = new List<int>();
+        foreach (var item in inventorySlots)
+        {
+            var a = item.GetComponentInChildren<InventoryItem>();
+            if (!a || a.item == null) continue;
+            items.Add(a.item);
+            counts.Add(a.count);
+        }
+        
+        data.Items = items.ToArray();
+        data.Coins = 0;
+        data.Counts = counts.ToArray();
     }
 }
