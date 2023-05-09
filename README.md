@@ -8,7 +8,7 @@
 - [5 animated Voxel animals](https://assetstore.unity.com/packages/3d/characters/animals/5-animated-voxel-animals-145754)
 - [Chests - PolyPack](https://assetstore.unity.com/packages/3d/props/chests-polypack-209167)
 
-## [Youtube Demo](https://www.youtube.com/watch?v=crf7C5FYSww)
+## [Youtube Demo](https://youtu.be/Ua7nZnKeDX0)
 
 ## Note
 The video does not have sound, due to it using copyrighted material, but the game itself has audio, just play it :D
