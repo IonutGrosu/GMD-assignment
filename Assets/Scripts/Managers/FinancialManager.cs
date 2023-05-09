@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class FinancialManager : MonoBehaviour
 {
-    public static FinancialManager instance;
+    public static FinancialManager Instance;
     
     public int money = 0;
     [SerializeField] private TextMeshProUGUI moneyText;
@@ -11,13 +11,7 @@ public class FinancialManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        instance = this;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        // RefreshMoneyText();
+        Instance = this;
     }
 
     public void DepositMoney(int amount)
@@ -28,6 +22,6 @@ public class FinancialManager : MonoBehaviour
 
     private void RefreshMoneyText()
     {
-        moneyText.text = money.ToString() + " $";
+        moneyText.text = money + " $";
     }
 }

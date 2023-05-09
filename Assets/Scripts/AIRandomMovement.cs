@@ -7,74 +7,75 @@ public class AIRandomMovement : MonoBehaviour
     public float movSpeed;
     public float rotSpeed = 100f;
 
-    private bool isWandering = false;
-    private bool isRotL = false;
-    private bool isRotR = false;
-    private bool isWalking = false;
+    private bool _isWandering = false;
+    private bool _isRotL = false;
+    private bool _isRotR = false;
+    private bool _isWalking = false;
 
-    Rigidbody rb;
-    Animator animator;
+    Rigidbody _rb;
+    Animator _animator;
 
     [SerializeField] private AudioSource idleAudio;
+    private static readonly int Walk = Animator.StringToHash("Walk");
 
     private void Start()
     {
-        animator = GetComponent<Animator>();
-        rb = GetComponent<Rigidbody>();
+        _animator = GetComponent<Animator>();
+        _rb = GetComponent<Rigidbody>();
     }
     private void Update()
     {
-        if (isWandering == false)
+        if (_isWandering == false)
         {
             StartCoroutine(Wander());
         }
-        if (isRotR == true)
+        if (_isRotR == true)
         {
-            transform.Rotate(transform.up * Time.deltaTime * rotSpeed);
+            transform.Rotate(transform.up * (Time.deltaTime * rotSpeed));
         }
-        if (isRotL == true)
+        if (_isRotL == true)
         {
-            transform.Rotate(transform.up * Time.deltaTime * -rotSpeed);
+            transform.Rotate(transform.up * (Time.deltaTime * -rotSpeed));
         }
-        if (isWalking == true)
+        if (_isWalking == true)
         {
-            rb.transform.position += transform.forward * movSpeed;
-            animator.SetInteger("Walk", 1);
+            _rb.transform.position += transform.forward * movSpeed;
+            _animator.SetInteger(Walk, 1);
         }
 
-        if (isWalking == false)
+        if (_isWalking == false)
         {
-            animator.SetInteger("Walk", 0);
+            _animator.SetInteger(Walk, 0);
         }
     }
     IEnumerator Wander()
     {
-        int rottime = Random.Range(1, 3);
-        int rotwait = Random.Range(1, 3);
-        int rotateDir = Random.Range(1, 3);
-        int walkwait = Random.Range(1, 3);
-        int walktime = Random.Range(1, 3);
+        var rottime = Random.Range(1, 3);
+        var rotwait = Random.Range(1, 3);
+        var rotateDir = Random.Range(1, 3);
+        var walkwait = Random.Range(1, 3);
+        var walktime = Random.Range(1, 3);
 
-        isWandering = true;
+        _isWandering = true;
 
         yield return new WaitForSeconds(walkwait);
-        isWalking = true;
+        _isWalking = true;
         yield return new WaitForSeconds(walktime);
-        isWalking = false;
+        _isWalking = false;
         yield return new WaitForSeconds(rotwait);
         if (rotateDir == 1)
         {
-            isRotR = true;
+            _isRotR = true;
             yield return new WaitForSeconds(rottime);
-            isRotR = false;
+            _isRotR = false;
         }
         if (rotateDir == 2)
         {
-            isRotL = true;
+            _isRotL = true;
             yield return new WaitForSeconds(rottime);
-            isRotL = false;
+            _isRotL = false;
         }
-        isWandering = false;
+        _isWandering = false;
         idleAudio.Play();
     }
 }

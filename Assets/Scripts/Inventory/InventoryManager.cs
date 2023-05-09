@@ -13,7 +13,7 @@ public class InventoryManager : MonoBehaviour, ISaveManager
 
     public Item[] startItems;
 
-    public const int MaxStackSize = 64;
+    private const int MaxStackSize = 64;
 
     private int _selectedSlot = -1;
 
@@ -63,7 +63,7 @@ public class InventoryManager : MonoBehaviour, ISaveManager
             if (itemInSlot != null && itemInSlot.item == item && itemInSlot.count < MaxStackSize && item.stackable )
             {
                 itemInSlot.count++;
-                itemInSlot.refreshCount();
+                itemInSlot.RefreshCount();
                 return true;
             }
         }
@@ -106,7 +106,7 @@ public class InventoryManager : MonoBehaviour, ISaveManager
                 }
                 else
                 {
-                    itemInSlot.refreshCount();
+                    itemInSlot.RefreshCount();
                 }
             }
             return selectedItem;

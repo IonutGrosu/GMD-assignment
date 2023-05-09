@@ -1,9 +1,10 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 public class VegetationGenerator : MonoBehaviour
 {
-    public GameWorldManager GameWorldManager;
+    [FormerlySerializedAs("GameWorldManager")] public GameWorldManager gameWorldManager;
 
     [SerializeField]
     private float treeNoiseScale = .01f;
@@ -12,39 +13,39 @@ public class VegetationGenerator : MonoBehaviour
     [SerializeField]
     private GameObject[] treePrefabs;
     
-    public PlayerSpawnHelper PlayerSpawnHelper;
+    [FormerlySerializedAs("PlayerSpawnHelper")] public PlayerSpawnHelper playerSpawnHelper;
 
-    public WildlifeSpawner WildlifeSpawner;
+    [FormerlySerializedAs("WildlifeSpawner")] public WildlifeSpawner wildlifeSpawner;
     
-    private int size;
+    private int _size;
 
     private void Awake()
     {
-        size = GameWorldManager.WorldSize;
+        _size = gameWorldManager.worldSize;
     }
     
     
     public void GenerateTrees(Cell[,] grid)
     {
-        float[,] noiseMap = new float[size, size];
-        (float xOffset, float yOffset) = (Random.Range(-10000f, 10000f), Random.Range(-10000f, 10000f));
-        for (int y = 0; y < size; y++)
+        var noiseMap = new float[_size, _size];
+        var (xOffset, yOffset) = (Random.Range(-10000f, 10000f), Random.Range(-10000f, 10000f));
+        for (var y = 0; y < _size; y++)
         {
-            for (int x = 0; x < size; x++)
+            for (var x = 0; x < _size; x++)
             {
-                float noiseValue = Mathf.PerlinNoise(x * treeNoiseScale + xOffset, y * treeNoiseScale + yOffset);
+                var noiseValue = Mathf.PerlinNoise(x * treeNoiseScale + xOffset, y * treeNoiseScale + yOffset);
                 noiseMap[x, y] = noiseValue;
             }
         }
 
-        for (int y = 0; y < size; y++)
+        for (var y = 0; y < _size; y++)
         {
-            for (int x = 0; x < size; x++)
+            for (var x = 0; x < _size; x++)
             {
-                Cell cell = grid[x, y];
+                var cell = grid[x, y];
                 if (cell.CellType.Equals(CellType.GRASS))
                 {
-                    float v = Random.Range(0f, treeDensity);
+                    var v = Random.Range(0f, treeDensity);
                     if (noiseMap[x, y] < v)
                     {
                         //tree here
@@ -59,8 +60,8 @@ public class VegetationGenerator : MonoBehaviour
             }
         }
         
-        PlayerSpawnHelper.SpawnPlayer();
-        WildlifeSpawner.SpawnChickens();
+        playerSpawnHelper.SpawnPlayer();
+        wildlifeSpawner.SpawnChickens();
     }
     
 }

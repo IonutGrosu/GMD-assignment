@@ -1,15 +1,15 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class GameWorldManager : MonoBehaviour
 {
-    
-    public Cell[,] WorldGrid;
-    public int WorldSize = 100;
+    private Cell[,] _worldGrid;
+    [FormerlySerializedAs("WorldSize")] public int worldSize = 100;
 
-    public TerrainGenerator TerrainGenerator;
-    public VegetationGenerator VegetationGenerator;
-    public PlayerSpawnHelper PlayerSpawnHelper;
+    [FormerlySerializedAs("TerrainGenerator")] public TerrainGenerator terrainGenerator;
+    [FormerlySerializedAs("VegetationGenerator")] public VegetationGenerator vegetationGenerator;
+    [FormerlySerializedAs("PlayerSpawnHelper")] public PlayerSpawnHelper playerSpawnHelper;
 
     private void Awake()
     {
@@ -19,8 +19,8 @@ public class GameWorldManager : MonoBehaviour
 
     private void Start()
     {
-        TerrainGenerator.GenerateTerrain(out WorldGrid);
-        VegetationGenerator.GenerateTrees(WorldGrid);
-        // PlayerSpawnHelper.SpawnPlayer();
+        terrainGenerator.GenerateTerrain(out _worldGrid);
+        vegetationGenerator.GenerateTrees(_worldGrid);
+        playerSpawnHelper.SpawnPlayer();
     }
 }

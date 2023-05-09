@@ -20,10 +20,10 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     {
         item = newItem;
         image.sprite = newItem.image;
-        refreshCount();
+        RefreshCount();
     }
 
-    public void refreshCount()
+    public void RefreshCount()
     {
         countText.text = count.ToString();
         countText.gameObject.SetActive(count > 1);
@@ -32,8 +32,9 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     public void OnBeginDrag(PointerEventData eventData)
     {
         image.raycastTarget = false;
-        parentAfterDrag = transform.parent;
-        transform.SetParent(transform.root);
+        var transform1 = transform;
+        parentAfterDrag = transform1.parent;
+        transform.SetParent(transform1.root);
     }
 
     public void OnDrag(PointerEventData eventData)

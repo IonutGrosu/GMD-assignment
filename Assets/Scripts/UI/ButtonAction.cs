@@ -14,7 +14,6 @@ namespace StarterAssets.UI
 
         public void Click()
         {
-            Debug.Log("Button has been clicked");
             SceneManager.LoadScene(1);
         }
     }

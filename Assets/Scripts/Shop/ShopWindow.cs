@@ -7,24 +7,18 @@ public class ShopWindow : MonoBehaviour
 {
     [SerializeField] private List<InventorySlot> shopInventorySlots;
     [SerializeField] private TextMeshProUGUI itemsValueText;
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
     {
         var totalPrice = 0;
-        foreach (InventorySlot slot in shopInventorySlots)
+        foreach (var slot in shopInventorySlots)
         {
             print(slot);
-            InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
+            var itemInSlot = slot.GetComponentInChildren<InventoryItem>();
             if (itemInSlot != null)
             {
-                Item selectedItem = itemInSlot.item;
+                var selectedItem = itemInSlot.item;
                 if (selectedItem.sellable)
                 {
                     totalPrice += selectedItem.sellPrice * itemInSlot.count;
@@ -38,13 +32,13 @@ public class ShopWindow : MonoBehaviour
     public void Sell()
     {
         var totalPrice = 0;
-        foreach (InventorySlot slot in shopInventorySlots)
+        foreach (var slot in shopInventorySlots)
         {
             print(slot);
-            InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
+            var itemInSlot = slot.GetComponentInChildren<InventoryItem>();
             if (itemInSlot != null)
             {
-                Item selectedItem = itemInSlot.item;
+                var selectedItem = itemInSlot.item;
                 if (selectedItem.sellable)
                 {
                     totalPrice += selectedItem.sellPrice * itemInSlot.count;
@@ -54,20 +48,20 @@ public class ShopWindow : MonoBehaviour
             }
         }
         
-        FinancialManager.instance.DepositMoney(totalPrice);
+        FinancialManager.Instance.DepositMoney(totalPrice);
     }
 
     public void MoveItemsBackToInventory()
     {
-        foreach (InventorySlot slot in shopInventorySlots)
+        foreach (var slot in shopInventorySlots)
         {
             print(slot);
-            InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
+            var itemInSlot = slot.GetComponentInChildren<InventoryItem>();
             if (itemInSlot != null)
             {
-                Item selectedItem = itemInSlot.item;
+                var selectedItem = itemInSlot.item;
 
-                for (int i = 0; i < itemInSlot.count; i++)
+                for (var i = 0; i < itemInSlot.count; i++)
                 {
                     InventoryManager.Instance.AddItem(selectedItem);
                     Destroy(itemInSlot.gameObject);

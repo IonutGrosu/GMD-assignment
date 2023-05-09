@@ -42,16 +42,16 @@ public class PlantLogic : MonoBehaviour
 
     private Harvest GetHarvestedSeedsAndFruits()
     {
-        var harvest = new Harvest(plant.PlantType);
-        if (plant.MaxHarvestableSeeds > 0)
+        var harvest = new Harvest(plant.plantType);
+        if (plant.maxHarvestableSeeds > 0)
         {
-            harvest.HarvestedSeeds = Random.Range(plant.MinHarvestableSeeds, plant.MaxHarvestableSeeds);
+            harvest.HarvestedSeeds = Random.Range(plant.minHarvestableSeeds, plant.maxHarvestableSeeds);
         }
         else harvest.HarvestedSeeds = 0;
 
-        if (plant.MaxHarvestableFruits > 0)
+        if (plant.maxHarvestableFruits > 0)
         {
-            harvest.HarvestedFruits = Random.Range(plant.MinHarvestableFruits, plant.MaxHarvestableFruits);
+            harvest.HarvestedFruits = Random.Range(plant.minHarvestableFruits, plant.maxHarvestableFruits);
         }
         else harvest.HarvestedFruits = 0;
 

@@ -19,7 +19,7 @@ public class FarmlandManager : MonoBehaviour
             {
                 if (selectedItem.name.Equals("Shovel")) // also test if selected gameobject is grass
                 {
-                    GameObject go = Selectable.instance.GetSelection();
+                    GameObject go = Selectable.Instance.GetSelection();
                     go.TryGetComponent(out Tags selectedGameObjectTags);
                     if (selectedGameObjectTags.HasTag("Grass"))
                     {
@@ -29,7 +29,7 @@ public class FarmlandManager : MonoBehaviour
                     }
                 } else if (selectedItem.name.Equals("TomatoSeed"))
                 {
-                    GameObject go = Selectable.instance.GetSelection();
+                    GameObject go = Selectable.Instance.GetSelection();
                     Vector3 position = go.transform.position;
                     if (go.TryGetComponent<Tags>(out var tags) && tags.HasTag("PlantableDirt"))
                     {
@@ -42,7 +42,7 @@ public class FarmlandManager : MonoBehaviour
                     }
                 } else if (selectedItem.name.Equals("EggplantSeed"))
                 {
-                    GameObject go = Selectable.instance.GetSelection();
+                    GameObject go = Selectable.Instance.GetSelection();
                     Vector3 position = go.transform.position;
                     if (go.TryGetComponent<Tags>(out var tags) && tags.HasTag("PlantableDirt"))
                     {
@@ -56,7 +56,7 @@ public class FarmlandManager : MonoBehaviour
 
                 } else if(selectedItem.name.Equals("Pickaxe"))
                 {
-                    GameObject go = Selectable.instance.GetSelection();
+                    GameObject go = Selectable.Instance.GetSelection();
                     Tags selectedGameObjectTags = go.GetComponent<Tags>();
                     if (selectedGameObjectTags != null)
                     {
@@ -66,7 +66,7 @@ public class FarmlandManager : MonoBehaviour
                             if (plantLogic != null)
                             {
                                 Harvest harvest = plantLogic.Harvest();
-                                HarvestUtil.instance.AddHarvestToInventory(harvest);
+                                HarvestUtil.Instance.AddHarvestToInventory(harvest);
                                 print($"Harvested {harvest.HarvestedSeeds} seeds and {harvest.HarvestedFruits} fruits from the {harvest.PlantType} plant");
                             }
                         }

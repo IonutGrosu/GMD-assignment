@@ -1,11 +1,12 @@
-﻿using StarterAssets.Plants;
+﻿using System;
+using StarterAssets.Plants;
 using UnityEngine;
 
 namespace StarterAssets.Utils
 {
     public class HarvestUtil: MonoBehaviour
     {
-        public static HarvestUtil instance;
+        public static HarvestUtil Instance;
 
         [SerializeField] private Item tomatoSeed;
         [SerializeField] private Item tomatoFruit;
@@ -14,7 +15,7 @@ namespace StarterAssets.Utils
 
         private void Start()
         {
-            instance = this;
+            Instance = this;
         }
 
         public void AddHarvestToInventory(Harvest harvest)
@@ -23,7 +24,7 @@ namespace StarterAssets.Utils
             {
                 case PlantType.Tomato:
                 {
-                    for (int i = 0; i < harvest.HarvestedSeeds; i++)
+                    for (var i = 0; i < harvest.HarvestedSeeds; i++)
                     {
                         InventoryManager.Instance.AddItem(tomatoSeed);
                     }
@@ -36,7 +37,7 @@ namespace StarterAssets.Utils
                 }
                 case PlantType.Eggplant:
                 {
-                    for (int i = 0; i < harvest.HarvestedSeeds; i++)
+                    for (var i = 0; i < harvest.HarvestedSeeds; i++)
                     {
                         InventoryManager.Instance.AddItem(eggplantSeed);
                     }
@@ -47,6 +48,8 @@ namespace StarterAssets.Utils
                     }
                     break;
                 }
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
         }
     }

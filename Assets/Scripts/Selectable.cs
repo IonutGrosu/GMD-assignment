@@ -3,23 +3,23 @@ using UnityEngine.EventSystems;
 
 public class Selectable : MonoBehaviour
 {
-    public static Selectable instance;
+    public static Selectable Instance;
     
     [SerializeField] private new string tag = "Selectable";
-    private Camera camera;
-    private Transform selection;
-    private Transform highlight;
-    private RaycastHit raycastHit;
+    private Camera _camera;
+    private Transform _selection;
+    private Transform _highlight;
+    private RaycastHit _raycastHit;
 
     private void Awake()
     {
-        instance = this;
-        camera = Camera.main;
+        Instance = this;
+        _camera = Camera.main;
     }
 
     public GameObject GetSelection()
     {
-        var ray = camera.ScreenPointToRay(Input.mousePosition);
+        var ray = _camera.ScreenPointToRay(Input.mousePosition);
 
         Physics.Raycast(ray, out var hit);
         if (hit.transform.CompareTag(tag))
@@ -32,77 +32,53 @@ public class Selectable : MonoBehaviour
 
     void Update()
     {
-        // Highlight
-        if (highlight != null)
+        if (_highlight != null)
         {
-            highlight.gameObject.GetComponent<Outline>().enabled = false;
-            highlight = null;
+            _highlight.gameObject.GetComponent<Outline>().enabled = false;
+            _highlight = null;
         }
-        Ray ray = camera.ScreenPointToRay(Input.mousePosition);
-        if (!EventSystem.current.IsPointerOverGameObject() && Physics.Raycast(ray, out raycastHit))
+        var ray = _camera.ScreenPointToRay(Input.mousePosition);
+        if (!EventSystem.current.IsPointerOverGameObject() && Physics.Raycast(ray, out _raycastHit))
         {
-            highlight = raycastHit.transform;
-            // Tags hitTags = highlight.GetComponent<Tags>();
-            // if (hitTags != null)
-            // {
-            //     if (hitTags.HasTag("Selectable") && highlight != selection)
-            //     {
-            //         if (highlight.gameObject.GetComponent<Outline>() != null)
-            //         {
-            //             highlight.gameObject.GetComponent<Outline>().enabled = true;
-            //         }
-            //         else
-            //         {
-            //             Outline outline = highlight.gameObject.AddComponent<Outline>();
-            //             outline.enabled = true;
-            //             highlight.gameObject.GetComponent<Outline>().OutlineColor = Color.magenta;
-            //             highlight.gameObject.GetComponent<Outline>().OutlineWidth = 7.0f;
-            //         }
-            //     }
-            //     else
-            //     {
-            //         highlight = null;
-            //     }
-            // }
-            if (highlight.CompareTag("Selectable") && highlight != selection)
+            _highlight = _raycastHit.transform;
+            if (_highlight.CompareTag("Selectable") && _highlight != _selection)
             {
-                if (highlight.gameObject.GetComponent<Outline>() != null)
+                if (_highlight.gameObject.GetComponent<Outline>() != null)
                 {
-                    highlight.gameObject.GetComponent<Outline>().enabled = true;
+                    _highlight.gameObject.GetComponent<Outline>().enabled = true;
                 }
                 else
                 {
-                    Outline outline = highlight.gameObject.AddComponent<Outline>();
+                    Outline outline = _highlight.gameObject.AddComponent<Outline>();
                     outline.enabled = true;
-                    highlight.gameObject.GetComponent<Outline>().OutlineColor = Color.magenta;
-                    highlight.gameObject.GetComponent<Outline>().OutlineWidth = 7.0f;
+                    _highlight.gameObject.GetComponent<Outline>().OutlineColor = Color.magenta;
+                    _highlight.gameObject.GetComponent<Outline>().OutlineWidth = 7.0f;
                 }
             }
             else
             {
-                highlight = null;
+                _highlight = null;
             }
         }
-
-        // Selection
+        
         if (Input.GetMouseButtonDown(0))
         {
-            if (highlight)
+            if (_highlight)
             {
-                if (selection != null)
+                if (_selection != null)
                 {
-                    selection.gameObject.GetComponent<Outline>().enabled = false;
+                    _selection.gameObject.GetComponent<Outline>().enabled = false;
                 }
-                selection = raycastHit.transform;
-                selection.gameObject.GetComponent<Outline>().enabled = true;
-                highlight = null;
+                _selection = _raycastHit.transform;
+                _selection.gameObject.GetComponent<Outline>().enabled = true;
+                _highlight = null;
             }
             else
             {
-                if (selection)
+                if (_selection)
                 {
-                    selection.gameObject.GetComponent<Outline>().enabled = false;
-                    selection = null;
+                    _selection.gameObject.GetComponent<Outline>().enabled = false;
+                    _selection = null;
                 }
             }
         }

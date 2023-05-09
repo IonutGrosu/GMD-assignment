@@ -1,11 +1,10 @@
 public class Cell
 {
-    // public bool isWater;
-    public CellType CellType { get; set; }
+    public CellType CellType { get; }
 
     public Cell(CellType cellType)
     {
-        this.CellType = cellType;
+        CellType = cellType;
     }
 }
 
