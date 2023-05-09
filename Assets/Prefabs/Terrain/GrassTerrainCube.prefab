@@ -110,7 +110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7488696b692f6443808128603a27ba2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _tags:
+  tags:
   - {fileID: 11400000, guid: 3f97fea5026d5f0448431416323b18cd, type: 2}
   - {fileID: 11400000, guid: 81c2eaaa045b98e498b5d923420c6fc4, type: 2}
   - {fileID: 11400000, guid: 82badfa229dc21a4f8f217a44c968dbf, type: 2}
